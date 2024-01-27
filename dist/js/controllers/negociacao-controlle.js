@@ -1,7 +1,7 @@
 import { Negociacao } from "../models/negociacao.js";
 export class NegociacaoControler {
     constructor() {
-        this._inputData = document.querySelector('#data'),
+            this._inputData = document.querySelector('#data'),
             this._inputQuantidade = document.querySelector('#quantidade'),
             this._inputValor = document.querySelector('#valor');
     }
