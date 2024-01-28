@@ -31,8 +31,8 @@ export class NegociacaoControler {
     limparForm(): void {
         const inputs = [this._inputData, this._inputQuantidade, this._inputValor];
         inputs.forEach(input => {
-            input.value = ''
-        })
+            input.value = '';
+        });
         this._inputData.focus()
     }
 }
