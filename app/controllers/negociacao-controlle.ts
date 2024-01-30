@@ -7,18 +7,16 @@ export class NegociacaoControler {
     private _inputQuantidade: HTMLInputElement
     private _inputValor: HTMLInputElement
     private negociacoes = new Negociacoes()
+    private negociacoesView = new NegociacoesView('#negociacoesView')
 
     constructor() {
         this._inputData = document.querySelector('#data'),
         this._inputQuantidade = document.querySelector('#quantidade'),
         this._inputValor = document.querySelector('#valor')
+        this.negociacoesView.update()
     }
 
     adiciona(): void {
-        const view = new NegociacoesView()
-        view.template()
-
-        
         const negociacao = this.criaNegociacao()
         this.negociacoes.adiciona(negociacao)
         console.log(this.negociacoes.lista())
