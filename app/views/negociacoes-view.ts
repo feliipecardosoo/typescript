@@ -1,5 +1,5 @@
 import { Negociacoes } from '../models/negociacoes.js';
-import View from './view.js';
+import {View} from './view.js';
 
 export class NegociacoesView extends View<Negociacoes>{
 
@@ -34,8 +34,4 @@ export class NegociacoesView extends View<Negociacoes>{
         `;
     }
 
-    update(model: Negociacoes): void {
-        const template = this.template(model);
-        this.elemento.innerHTML = template;
-    }
 }

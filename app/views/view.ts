@@ -1,7 +1,8 @@
-export default class View<T> {
-    protected elemento: HTMLElement
+export abstract class View<T> {
 
-    constructor(seletor: string){
+    protected elemento: HTMLElement;
+
+    constructor(seletor: string) {
         this.elemento = document.querySelector(seletor);
     }
 
@@ -10,7 +11,5 @@ export default class View<T> {
         this.elemento.innerHTML = template;
     }
 
-    template(model: T): string {
-        throw Error('Precisa implementar template')
-    }
+    abstract template(model: T): string;
 }
