@@ -14,9 +14,17 @@ export class NegociacaoController {
     }
     adiciona() {
         const negociacao = this.criaNegociacao();
+        if (!this.verificaDiaUtil(negociacao.data)) {
+            this.mensagemView
+                .update('Por favor, apenas dias uteis.');
+            return;
+        }
         this.negociacoes.adiciona(negociacao);
         this.limparFormulario();
         this.atualizaView();
+    }
+    verificaDiaUtil(data) {
+        return data.getDay() > 0 && data.getDay() < 6;
     }
     criaNegociacao() {
         const exp = /-/g;

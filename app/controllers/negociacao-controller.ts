@@ -20,9 +20,18 @@ export class NegociacaoController {
 
     public adiciona(): void {
         const negociacao = this.criaNegociacao();
+        if(!this.verificaDiaUtil(negociacao.data)) {
+            this.mensagemView
+                .update('Por favor, apenas dias uteis.')
+            return
+        } 
         this.negociacoes.adiciona(negociacao);
         this.limparFormulario();
         this.atualizaView()
+    }
+
+    private verificaDiaUtil(data: Date):boolean {
+        return data.getDay() > 0 && data.getDay() < 6
     }
 
     private criaNegociacao(): Negociacao {
