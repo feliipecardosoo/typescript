@@ -9,35 +9,40 @@ export class NegociacaoController {
     private inputQuantidade: HTMLInputElement;
     private inputValor: HTMLInputElement;
     private negociacoes = new Negociacoes();
-    private negociacoesView = new NegociacoesView('#negociacoesView');
-    private mensagemView = new MensagemView('#mensagemView')
+    private negociacoesView = new NegociacoesView('#negociacoesView', true);
+    private mensagemView = new MensagemView('#mensagemView');
 
     constructor() {
-        this.inputData = document.querySelector('#data');
-        this.inputQuantidade = document.querySelector('#quantidade');
-        this.inputValor = document.querySelector('#valor');
+        this.inputData = <HTMLInputElement>document.querySelector('#data');
+        this.inputQuantidade = document.querySelector('#quantidade') as HTMLInputElement;
+        this.inputValor = document.querySelector('#valor') as HTMLInputElement;
         this.negociacoesView.update(this.negociacoes);
     }
 
     public adiciona(): void {
+        /*
+            Zé, você já viu isso?
+        */
         const negociacao = Negociacao.criaDe(
-            this.inputData.value,
+            this.inputData.value, 
             this.inputQuantidade.value,
             this.inputValor.value
-        )
-        if(!this.verificaDiaUtil(negociacao.data)) {
+        );
+     
+        if (!this.ehDiaUtil(negociacao.data)) {
             this.mensagemView
-                .update('Por favor, apenas dias uteis.')
-            return
-        } 
+                .update('Apenas negociações em dias úteis são aceitas');
+            return ;
+        }
+
         this.negociacoes.adiciona(negociacao);
         this.limparFormulario();
-        this.atualizaView()
+        this.atualizaView();
     }
 
-    private verificaDiaUtil(data: Date):boolean {
+    private ehDiaUtil(data: Date) {
         return data.getDay() > DiasDaSemana.DOMINGO 
-            && data.getDay() < DiasDaSemana.SABADO
+            && data.getDay() < DiasDaSemana.SABADO;
     }
 
     private limparFormulario(): void {
@@ -49,6 +54,6 @@ export class NegociacaoController {
 
     private atualizaView(): void {
         this.negociacoesView.update(this.negociacoes);
-        this.mensagemView.update('Negociacao adicionada com sucesso!')
+        this.mensagemView.update('Negociação adicionada com sucesso');
     }
 }

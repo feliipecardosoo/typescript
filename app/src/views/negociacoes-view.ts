@@ -1,7 +1,7 @@
 import { Negociacoes } from '../models/negociacoes.js';
-import {View} from './view.js';
+import { View } from './view.js';
 
-export class NegociacoesView extends View<Negociacoes>{
+export class NegociacoesView extends View<Negociacoes> {
 
     protected template(model: Negociacoes): string {
         return `
@@ -35,7 +35,6 @@ export class NegociacoesView extends View<Negociacoes>{
 
     private formatar(data: Date): string {
         return new Intl.DateTimeFormat()
-            .format(data)
+            .format(data);
     }
-
 }
