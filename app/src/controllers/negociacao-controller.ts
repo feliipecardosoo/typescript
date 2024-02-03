@@ -20,9 +20,6 @@ export class NegociacaoController {
     }
 
     public adiciona(): void {
-        /*
-            Zé, você já viu isso?
-        */
         const negociacao = Negociacao.criaDe(
             this.inputData.value, 
             this.inputQuantidade.value,
